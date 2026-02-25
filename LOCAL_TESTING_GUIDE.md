@@ -1,5 +1,7 @@
 # 🧪 Local Testing Guide for GitOps Promoter
 
+
+
 This guide will help you test the gitops-promoter Helm chart on your local Kubernetes cluster with your own GitHub repository.
 
 ---
@@ -190,10 +192,10 @@ addons:
 gitopsPromoter:
   enabled: true
   installCRDs: true  # Install CRDs in local cluster
-  
+
   namespace: promoter-system
   createNamespace: true
-  
+
   # ScmProvider configuration (GitHub)
   scmProvider:
     enabled: true
@@ -205,7 +207,7 @@ gitopsPromoter:
       installationID: 0  # 0 for PAT
       repoName: gitops-promoter-test  # ⚠️ CHANGE THIS to your repo name
       githubOrgName: YOUR_GITHUB_USERNAME  # ⚠️ CHANGE THIS to your username/org
-  
+
   # PromotionStrategy configuration
   promoterStrategy:
     name: test-strategy
@@ -218,14 +220,14 @@ gitopsPromoter:
         autoMerge: true  # Auto-merge PRs to staging
       - branch: environment/production
         autoMerge: false  # Require manual approval for production
-  
+
   # Hydrator (optional - for ArgoCD integration)
   hydrator:
     enabled: false  # Disable for basic testing without ArgoCD
     applicationSelector:
       matchLabels:
         tier: infrastructure
-  
+
   # Pull request templates
   pullRequestTemplate:
     title: "Promote {{ .ChangeTransferPolicy.Status.Proposed.Dry.Subject }} to {{ .ChangeTransferPolicy.Spec.ActiveBranch }}"
@@ -233,7 +235,7 @@ gitopsPromoter:
       This PR is promoting the environment branch `{{ .ChangeTransferPolicy.Spec.ActiveBranch }}`
       which is currently on dry sha {{ .ChangeTransferPolicy.Status.Active.Dry.Sha }}
       to dry sha {{ .ChangeTransferPolicy.Status.Proposed.Dry.Sha }}.
-      
+
       Commit message: {{ .ChangeTransferPolicy.Status.Proposed.Dry.Subject }}
       Author: {{ .ChangeTransferPolicy.Status.Proposed.Dry.Author }}
 ```
@@ -255,10 +257,10 @@ addons:
 gitopsPromoter:
   enabled: true
   installCRDs: true
-  
+
   namespace: promoter-system
   createNamespace: true
-  
+
   scmProvider:
     enabled: true
     name: local-scm
@@ -269,7 +271,7 @@ gitopsPromoter:
       installationID: 12345678  # ⚠️ CHANGE THIS to your Installation ID
       repoName: gitops-promoter-test  # ⚠️ CHANGE THIS
       githubOrgName: YOUR_GITHUB_USERNAME  # ⚠️ CHANGE THIS
-  
+
   promoterStrategy:
     name: test-strategy
     gitRepositoryRef:
@@ -281,10 +283,10 @@ gitopsPromoter:
         autoMerge: true
       - branch: environment/production
         autoMerge: false
-  
+
   hydrator:
     enabled: false
-  
+
   pullRequestTemplate:
     title: "Promote {{ .ChangeTransferPolicy.Status.Proposed.Dry.Subject }} to {{ .ChangeTransferPolicy.Spec.ActiveBranch }}"
     description: |
