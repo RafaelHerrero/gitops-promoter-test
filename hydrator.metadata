@@ -1,7 +1,7 @@
 {
   "repoURL": "https://github.com/RafaelHerrero/gitops-promoter-test",
-  "drySha": "92d4eb70b527a06afa33c00d17ef049e49d3cacc",
+  "drySha": "c97b18521ce827ce8e0758b2f34d93f8454a46d0",
   "author": "Rafael Herrero <rherrero@schubergphilis.com>",
-  "date": "2026-02-25T12:05:56Z",
-  "subject": "add stuff"
+  "date": "2026-02-25T15:09:45Z",
+  "subject": "commit"
 }
